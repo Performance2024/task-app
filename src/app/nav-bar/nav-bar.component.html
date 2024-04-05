@@ -1,0 +1,93 @@
+<div
+  class="bg-white h-[192px] py-8 px-8 lg:flex hidden flex-col justify-between sticky top-0 z-10 shadow-sm"
+>
+  <div class="flex justify-between items-center">
+    <span class="text-cscolor-300 font-[600] text-[24px]">Explore Task</span>
+    <div class="flex items-center gap-[24px]">
+      <div
+        class="w-[52px] h-[52px] border flex justify-center items-center rounded-full relative text-cscolor-100"
+      >
+        <svg
+          width="24px"
+          height="24px"
+          viewBox="0 0 24 24"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+        >
+          <g
+            fill="green"
+            id="Iconly/Light/Notification"
+            stroke="none"
+            stroke-width="1.5"
+            fill="none"
+            fill-rule="evenodd"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <g
+              id="Notification"
+              transform="translate(3.500000, 2.000000)"
+              stroke="#8E92BC"
+              stroke-width="1.5"
+            >
+              <path
+                d="M8.5,15.8476424 C14.13923,15.8476424 16.7480515,15.1242108 17,12.220506 C17,9.31879687 15.1811526,9.50539234 15.1811526,5.94511102 C15.1811526,3.16414015 12.5452291,-1.86517468e-14 8.5,-1.86517468e-14 C4.4547709,-1.86517468e-14 1.81884743,3.16414015 1.81884743,5.94511102 C1.81884743,9.50539234 0,9.31879687 0,12.220506 C0.252952291,15.135187 2.86177374,15.8476424 8.5,15.8476424 Z"
+                id="Stroke-1"
+              ></path>
+              <path
+                d="M10.8887931,18.8572176 C9.52465753,20.3719337 7.3966462,20.3898948 6.0194615,18.8572176"
+                id="Stroke-3"
+              ></path>
+            </g>
+          </g>
+        </svg>
+        <div
+          class="bg-cscolor-500 w-[8px] h-[8px] rounded-full absolute left-[26px] top-[14px]"
+        ></div>
+      </div>
+      <img src="../../assets/Profil.png" alt="" width="52" height="52" />
+    </div>
+  </div>
+  <div class="flex justify-between items-center gap-20">
+    <div
+      class="border rounded-[10px] px-[28px] py-[14px] w-[480px] h-[52px] flex items-center focus-within:border-cscolor-200"
+    >
+      <input
+        type="text"
+        id="task-search-input"
+        placeholder="Search Task"
+        class="w-full outline-none pr-[28px]"
+      />
+      <label for="task-search-input " class="flex items-end">
+        <ng-icon
+          name="saxSearchNormal1Outline"
+          class="text-cscolor-400 w-5 h-5 cursor-pointer"
+        ></ng-icon>
+      </label>
+    </div>
+    <div class="flex w-[368px] h-[52px] justify-between gap-5">
+      <button
+        class="border w-[148px] px-[28px] py-[14px] rounded-[10px] flex items-center justify-between"
+      >
+        <ng-icon
+          name="saxElement2Outline"
+          class="text-cscolor-200 w-[24px] h-[24px]"
+        ></ng-icon>
+        <span class="text-cscolor-300 text-[12px] font-[600]">Category</span>
+      </button>
+
+      <button
+        class="border w-[196px] px-[28px] py-[14px] rounded-[10px] flex items-center justify-between"
+      >
+        <ng-icon
+          name="saxSortOutline"
+          class="text-cscolor-200 w-[24px] h-[24px]"
+        ></ng-icon>
+        <span class="text-cscolor-300 text-[12px] font-[600]"
+          >Sort By : Deadline</span
+        >
+      </button>
+    </div>
+  </div>
+</div>

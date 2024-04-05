@@ -1,0 +1,37 @@
+<div
+  class="bg-cscolor-200/40 w-screen space-y-[68px] border-r h-screen fixed left-0 top-0 bottom-0 z-20 transition-all duration-[3000s]"
+  *ngIf="isMobileAsideOpen === true"
+>
+  <div
+    class="bg-white w-[252px] h-screen px-8 pt-8 space-y-[68px] border-r relative"
+  >
+    <button
+      (click)="closeAside()"
+      class="shadow-sm border border-cscolor-100 w-[44px] h-[44px] p-[10px] rounded-full flex justify-center items-center absolute right-8"
+    >
+      <ng-icon
+        name="saxAddOutline"
+        class="text-cscolor-500 w-6 h-6 rotate-45"
+      ></ng-icon>
+    </button>
+    <img alt="logo" src="../../assets/logo.png" width="188" height="40" />
+    <ul class="flex flex-col">
+      <li
+        *ngFor="let item of asideItems"
+        class="w-auto rounded-[10px] overflow-hidden"
+      >
+        <a
+          routerLink="{{ item.link }}"
+          routerLinkActive="bg-cscolor-100 text-black text-cscolor-300"
+          class="flex items-center py-[10px] px-5 space-x-[10px] text-cscolor-200"
+        >
+          <ng-icon
+            name="{{ item.icon }}"
+            class="font-[600] text-[24px]"
+          ></ng-icon>
+          <span class="text-[14px] font-[600]">{{ item.name }}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
