@@ -31,6 +31,9 @@ import { HttpResponse } from '@angular/common/http';
   ],
 })
 export class TaskDetailsComponent {
+  isTaskDetailLoading: boolean = false;
+  currentLoadPhotoPath: string = '';
+
   task: Task = {
     id: 0,
     image: '',
@@ -48,7 +51,6 @@ export class TaskDetailsComponent {
     lastname: new FormControl(''),
     photo: new FormControl(''),
   });
-
   studentFormData = new FormData();
 
   constructor(
@@ -58,14 +60,17 @@ export class TaskDetailsComponent {
 
   @Input()
   set id(taskId: number) {
+    this.isTaskDetailLoading = true;
     this.taskService.getATask(`/api/task/${taskId}`).subscribe((data: Task) => {
       this.task = data;
+      this.isTaskDetailLoading = false;
     });
   }
 
-  onFileSelected(event: any) {
+  onPhotoLoad(event: any) {
     const file: File = event.target.files[0];
     if (file) {
+      this.currentLoadPhotoPath = URL.createObjectURL(file);
       this.studentFormData.append('photo', file);
     }
   }
@@ -84,34 +89,37 @@ export class TaskDetailsComponent {
       .createStudent('/api/create_student', this.studentFormData)
       .pipe(
         catchError((error) => {
-          let errorDetails = error.error.detail;
-          if (error && Array.isArray(errorDetails)) {
-            errorDetails.forEach((detailError: any) => {
-              let fieldName = detailError.loc[detailError.loc.length - 1];
-              if (fieldName == 'firstname') {
-                this.studentForm.controls.firstname.setErrors({
-                  serverError: detailError.msg,
-                });
-              }
-              if (fieldName == 'lastname') {
-                this.studentForm.controls.lastname.setErrors({
-                  serverError: detailError.msg,
-                });
-              }
-              if (fieldName == 'photo') {
-                this.studentForm.controls.photo.setErrors({
-                  serverError: detailError.msg,
-                });
-              }
-            });
-            console.log(this.studentForm.controls);
+          if (error.status == 422) {
+            this.toastr.error('Bad informations');
+
+            let errorDetails = error.error.detail;
+            if (error && Array.isArray(errorDetails)) {
+              errorDetails.forEach((detailError: any) => {
+                let fieldName = detailError.loc[detailError.loc.length - 1];
+                if (fieldName == 'firstname') {
+                  this.studentForm.controls.firstname.setErrors({
+                    serverError: detailError.msg,
+                  });
+                }
+                if (fieldName == 'lastname') {
+                  this.studentForm.controls.lastname.setErrors({
+                    serverError: detailError.msg,
+                  });
+                }
+                if (fieldName == 'photo') {
+                  this.studentForm.controls.photo.setErrors({
+                    serverError: detailError.msg,
+                  });
+                }
+              });
+            }
           }
           return error;
         })
       )
       .subscribe((response: any) => {
         if (response.status === 200) {
-          this.toastr.success('Etudiant ajouter avec success');
+          this.toastr.success('Student create succefully');
           this.studentForm.reset();
         }
       });

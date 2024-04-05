@@ -18,10 +18,12 @@ import { RouterLink } from '@angular/router';
 export class TaskListComponent {
   tasks: Task[] = [];
   isFetchingData: boolean = false;
+  skeletons: number[] = [];
 
   constructor(private taskService: TaskService) {}
 
   ngOnInit(): void {
+    this.skeletons = Array(9).fill(0);
     this.isFetchingData = true;
     this.getAllTask();
   }
