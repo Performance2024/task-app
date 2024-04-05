@@ -84,7 +84,28 @@ export class TaskDetailsComponent {
       .createStudent('/api/create_student', this.studentFormData)
       .pipe(
         catchError((error) => {
-          console.log(error);
+          let errorDetails = error.error.detail;
+          if (error && Array.isArray(errorDetails)) {
+            errorDetails.forEach((detailError: any) => {
+              let fieldName = detailError.loc[detailError.loc.length - 1];
+              if (fieldName == 'firstname') {
+                this.studentForm.controls.firstname.setErrors({
+                  serverError: detailError.msg,
+                });
+              }
+              if (fieldName == 'lastname') {
+                this.studentForm.controls.lastname.setErrors({
+                  serverError: detailError.msg,
+                });
+              }
+              if (fieldName == 'photo') {
+                this.studentForm.controls.photo.setErrors({
+                  serverError: detailError.msg,
+                });
+              }
+            });
+            console.log(this.studentForm.controls);
+          }
           return error;
         })
       )

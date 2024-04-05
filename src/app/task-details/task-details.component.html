@@ -103,6 +103,13 @@
                 id="firstname"
                 class="h-[31px] w-full bg-cscolor-900 rounded-[5px] p-[10px] border border-cscolor-600 mt-[5px] outline-none focus:border-cscolor-700"
               />
+              <div *ngIf="studentForm.controls.firstname.errors" class="text-sm text-cscolor-500">
+                {{
+                  studentForm.controls.firstname.errors
+                    ? studentForm.controls.firstname.errors["serverError"]
+                    : ""
+                }}
+              </div>
             </div>
 
             <div>
@@ -119,6 +126,13 @@
                 id="lastname"
                 class="h-[31px] w-full bg-cscolor-900 rounded-[5px] p-[10px] border border-cscolor-600 mt-[5px] outline-none focus:border-cscolor-700"
               />
+              <div *ngIf="studentForm.controls.lastname.errors" class="text-sm text-cscolor-500">
+                {{
+                  studentForm.controls.lastname.errors
+                    ? studentForm.controls.lastname.errors["serverError"]
+                    : ""
+                }}
+              </div>
             </div>
           </div>
 
@@ -153,6 +167,13 @@
               <span class="text-[12px] text-cscolor-400 font-[400]"
                 >*drag or browser from device</span
               >
+              <div *ngIf="studentForm.controls.photo.errors" class="text-sm text-cscolor-500">
+                {{
+                  studentForm.controls.photo.errors
+                    ? studentForm.controls.photo.errors["serverError"]
+                    : ""
+                }}
+              </div>
             </div>
           </div>
         </div>
