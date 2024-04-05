@@ -21,3 +21,9 @@
   background-color: lightslategray;
   border-radius: 50px;
 }
+
+@layer components {
+  .drag-over {
+    @apply bg-red-500;
+  }
+}

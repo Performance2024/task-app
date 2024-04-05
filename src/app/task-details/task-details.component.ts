@@ -12,11 +12,17 @@ import { FormControl, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { pipe, catchError, Observable, Observer } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { HttpResponse } from '@angular/common/http';
+import { FileUploadDragAndDropDirective } from '../file-upload-drag-and-drop.directive';
 
 @Component({
   selector: 'app-task-details',
   standalone: true,
-  imports: [NgIconComponent, CommonModule, ReactiveFormsModule],
+  imports: [
+    NgIconComponent,
+    CommonModule,
+    ReactiveFormsModule,
+    FileUploadDragAndDropDirective,
+  ],
   providers: [TaskService],
   templateUrl: './task-details.component.html',
   styleUrl: './task-details.component.css',
@@ -66,6 +72,19 @@ export class TaskDetailsComponent {
       this.isTaskDetailLoading = false;
     });
   }
+  onFilesDropped(files: FileList) {
+    let file: File = files[0];
+    if (file) {
+      this.currentLoadPhotoPath = URL.createObjectURL(file);
+      this.studentFormData.append('photo', file);
+    }
+  }
+
+  // handleDragOver(event: any): void {
+  //   event.preventDefault();
+  //   event.stopPropagation();
+  //   alert('sss');
+  // }
 
   onPhotoLoad(event: any) {
     const file: File = event.target.files[0];
